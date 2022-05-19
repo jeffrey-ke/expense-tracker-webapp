@@ -31,7 +31,11 @@ const ExpenseForm = (props) => {
     const submitHandler = (event) => {
         event.preventDefault() //prevents the webpage default behavior of reloading the page on button click within a form
         const expenseData = {...userInput, enteredDate: new Date(userInput.enteredDate)}
-        props.onSaveExpenseData(expenseData)
+        props.onSaveExpenseData({
+            title: expenseData.enteredTitle,
+            amount: expenseData.enteredAmount,
+            date: expenseData.enteredDate
+        })
         setUserInput({
             enteredTitle: '',
             enteredAmount: '',
