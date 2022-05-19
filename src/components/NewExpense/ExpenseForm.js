@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import './ExpenseForm.css'
-const ExpenseForm = () => {
+const ExpenseForm = (props) => {
     // const [enteredTitle, setEnteredTitle] = useState('')
     // const [enteredAmount, setEnteredAmount] = useState(0.00)
     // const [enteredDate, setEnteredDate] = useState(new Date(2003, 11, 11))
@@ -16,8 +16,8 @@ const ExpenseForm = () => {
 
     const submitHandler = (event) => {
         event.preventDefault() //prevents the webpage default behavior of reloading the page on button click within a form
-        const ExpenseData = {...userInput, enteredDate: new Date(userInput.enteredDate)}
-        console.log(ExpenseData)
+        const expenseData = {...userInput, enteredDate: new Date(userInput.enteredDate)}
+        props.onSaveExpenseData(expenseData)
         setUserInput({
             enteredTitle: '',
             enteredAmount: '',
