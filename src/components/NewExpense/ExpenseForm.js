@@ -1,5 +1,4 @@
 import React, {useState} from 'react'
-import ExpenseDate from '../Expenses/ExpenseDate'
 import './ExpenseForm.css'
 const ExpenseForm = () => {
     // const [enteredTitle, setEnteredTitle] = useState('')
@@ -19,21 +18,26 @@ const ExpenseForm = () => {
         event.preventDefault() //prevents the webpage default behavior of reloading the page on button click within a form
         const ExpenseData = {...userInput, enteredDate: new Date(userInput.enteredDate)}
         console.log(ExpenseData)
+        setUserInput({
+            enteredTitle: '',
+            enteredAmount: '',
+            enteredDate: ''
+        })
     }
 
     return <form onSubmit={submitHandler}>
         <div className='new-expense__controls'>
             <div className='new-expense__control'>
                 <label>Title</label>
-                <input type='text' onChange={titleChangeHandler}/>
+                <input type='text' value={userInput.enteredTitle} onChange={titleChangeHandler}/>
             </div>
             <div className='new-expense__control'>
                 <label>Amount</label>
-                <input type='number' onChange={amountChangeHandler} min='0.01' step='0.01' />
+                <input type='number' value={userInput.enteredAmount} onChange={amountChangeHandler} min='0.01' step='0.01' />
             </div>
             <div className='new-expense__control'>
                 <label>Date</label>
-                <input type='date' onChange={dateChangeHandler} min='1970-01-01' max='2077-12-31' />
+                <input type='date' value={userInput.enteredDate} onChange={dateChangeHandler} min='1970-01-01' max='2077-12-31' />
             </div>
         </div>
         <div className='new-expense__Actions'>
