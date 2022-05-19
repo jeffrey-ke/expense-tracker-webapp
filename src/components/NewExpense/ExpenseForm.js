@@ -10,10 +10,24 @@ const ExpenseForm = (props) => {
         enteredDate: ''
     })
 
-    const titleChangeHandler = (event) => setUserInput({...userInput, enteredTitle: event.target.value}) //'...userInput' is the spread operator and extracts all the key values pairs and inserts them
-    const amountChangeHandler = (event) => setUserInput({...userInput, enteredAmount: event.target.value})
-    const dateChangeHandler = (event) => setUserInput({...userInput, enteredDate: event.target.value})
-
+    const titleChangeHandler = (event) => {
+        // setUserInput({...userInput, enteredTitle: event.target.value})
+         //'...userInput' is the spread operator and extracts all the key values pairs and inserts them
+         setUserInput((prevState) => {
+            return {...prevState, enteredTitle: event.target.value} //this is better form for updating state that includes details from previous state
+            //React ensures that I have teh right state to update.
+         })
+    }
+    const amountChangeHandler = (event) => {
+        setUserInput((prevState) => { 
+            return {...prevState, enteredAmount: event.target.value}
+        })
+    }
+    const dateChangeHandler = (event) => {
+        setUserInput((prevState) => {
+            return {...prevState, enteredDate: event.target.value}
+        })
+    }
     const submitHandler = (event) => {
         event.preventDefault() //prevents the webpage default behavior of reloading the page on button click within a form
         const expenseData = {...userInput, enteredDate: new Date(userInput.enteredDate)}
