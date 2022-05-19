@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import ExpenseDate from '../Expenses/ExpenseDate'
 import './ExpenseForm.css'
 const ExpenseForm = () => {
     // const [enteredTitle, setEnteredTitle] = useState('')
@@ -14,7 +15,13 @@ const ExpenseForm = () => {
     const amountChangeHandler = (event) => setUserInput({...userInput, enteredAmount: event.target.value})
     const dateChangeHandler = (event) => setUserInput({...userInput, enteredDate: event.target.value})
 
-    return <form>
+    const submitHandler = (event) => {
+        event.preventDefault() //prevents the webpage default behavior of reloading the page on button click within a form
+        const ExpenseData = {...userInput, enteredDate: new Date(userInput.enteredDate)}
+        console.log(ExpenseData)
+    }
+
+    return <form onSubmit={submitHandler}>
         <div className='new-expense__controls'>
             <div className='new-expense__control'>
                 <label>Title</label>
