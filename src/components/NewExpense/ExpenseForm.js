@@ -1,13 +1,18 @@
 import React, {useState} from 'react'
 import './ExpenseForm.css'
 const ExpenseForm = () => {
-    const [enteredTitle, setEnteredTitle] = useState('')
-    const [enteredAmount, setEnteredAmount] = useState(0.00)
-    const [enteredDate, setEnteredDate] = useState(new Date(2003, 11, 11))
+    // const [enteredTitle, setEnteredTitle] = useState('')
+    // const [enteredAmount, setEnteredAmount] = useState(0.00)
+    // const [enteredDate, setEnteredDate] = useState(new Date(2003, 11, 11))
+    const [userInput, setUserInput] = useState({
+        enteredTitle: '',
+        enteredAmount: '',
+        enteredDate: ''
+    })
 
-    const titleChangeHandler = (event) => setEnteredTitle(event.target.value)
-    const amountChangeHandler = (event) => setEnteredAmount(event.target.value)
-    const dateChangeHandler = (event) => setEnteredDate(event.target.value)
+    const titleChangeHandler = (event) => setUserInput({...userInput, enteredTitle: event.target.value}) //'...userInput' is the spread operator and extracts all the key values pairs and inserts them
+    const amountChangeHandler = (event) => setUserInput({...userInput, enteredAmount: event.target.value})
+    const dateChangeHandler = (event) => setUserInput({...userInput, enteredDate: event.target.value})
 
     return <form>
         <div className='new-expense__controls'>
